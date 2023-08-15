@@ -1,0 +1,10 @@
+drop *
+keep run
+keep event
+keep Generator_weight
+keep nGen*
+keep Gen*
+keep Electron*
+keep Photon*
+keep HLT*
+keep Flag_*

@@ -1,0 +1,7 @@
+keep ele*
+keep mass
+keep *weight*
+keep *Weight*
+keep nele
+keep HLT*
+keep Flag*
