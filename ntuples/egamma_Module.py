@@ -9,13 +9,25 @@ from PhysicsTools.NanoAODTools.postprocessing.tools import deltaR
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 from PhysicsTools.NanoAODTools.postprocessing.modules.common.countHistogramsModule import countHistogramsProducer
+
+_rootLeafType2rootBranchType = {
+    'UChar_t': 'b',
+    'Char_t': 'B',
+    'UInt_t': 'i',
+    'Int_t': 'I',
+    'Float_t': 'F',
+    'Double_t': 'D',
+    'ULong64_t': 'l',
+    'Long64_t': 'L',
+    'Bool_t': 'O'
+}
+
 class egamma_Producer(Module):
     def __init__(self,isdata=False):
         self.isdata=isdata
         pass
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
 
-#        self.out = wrappedOutputTree
 #        branches = ['pt','eta','phi','charge',
 #                    'cutBased','SigmaIEtaIEtaFull5x5','dEtaSeedAtVtx',
 #                    'dPhiAtVtx','HoverE','PFChIso','PFNeuIso',
@@ -59,9 +71,24 @@ class egamma_Producer(Module):
         self.out.branch('mass','F')
         if not self.isdata:
             self.out.branch("ele_is_prompt", "O", lenVar="nele")
+        self.out.branch('eleGen_mass','F',lenVar="nele")
+        self.out.branch('eleGen_pt','F',lenVar="nele")
+        self.out.branch('eleGen_eta','F',lenVar="nele")
+        self.out.branch('eleGen_phi','F',lenVar="nele")
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
 	pass
+
+    def filterBranchNames(self, branches, collection):
+        out = []
+        branchType = {}
+        for br in branches:
+            name = br.GetName()
+            if not name.startswith(collection + '_'):
+                continue
+            out.append(name.replace(collection + '_', ''))
+            branchType[out[-1]] = br.FindLeaf(br.GetName()).GetTypeName()
+        return out, branchType
 
     def analyze(self, event):
         """process event, return True (go to next module) or False (fail, go to next event)"""
@@ -72,7 +99,6 @@ class egamma_Producer(Module):
             self.out.fillBranch("gen_weight",0)
 
         electrons = Collection(event, "Electron")
-	photons = Collection(event, "Photon")
 	if hasattr(event, 'nGenPart'):
            genparts = Collection(event, "GenPart")
 
@@ -94,28 +120,32 @@ class egamma_Producer(Module):
             self.out.fillBranch('ele_' + i, [iobj[i] for iobj in electrons_select])
  
         if electron_pass>1:
-           v4=electron_select[0].p4()+electron_select[1].p4()
-           self.out.fillBranch('mass', v4.M())
+           self.out.fillBranch('mass', (electrons_select[0].p4()+electrons_select[1].p4()).M())
         else:
-           self.out.fillBranch('mass', v4.M())
+           self.out.fillBranch('mass', 0)
 
 
         isprompt_mask = (1 << 0) #isPrompt used for lepton
         isdirectprompttaudecayproduct_mask = (1 << 5) #isDirectPromptTauDecayProduct used for lepton
         
 	ele_is_real = []
+        genElectrons_select = []
         for j, lep in enumerate(electrons_select):
             is_real_flag = False
             if hasattr(event, 'nGenPart'):
                 for i in range(0,len(genparts)):
 		   if genparts[i].pt > 5 and abs(genparts[i].pdgId) == abs(lep.pdgId) and ((genparts[i].statusFlags & isprompt_mask == isprompt_mask) or (genparts[i].statusFlags & isdirectprompttaudecayproduct_mask == isdirectprompttaudecayproduct_mask)) and deltaR(lep.eta,lep.phi,genparts[i].eta,genparts[i].phi) < 0.3:
 	               is_real_flag = True
+                       genElectrons_select.append(genparts[i])
                        break 
 	        ele_is_real.append(is_real_flag)
             else:
 		ele_is_real = [False] * len(electrons_select)
          
-         self.out.fillBranch("ele_is_prompt", ele_is_real)
+        self.out.fillBranch("ele_is_prompt", ele_is_real)
+
+        for i in ['mass','pt','eta','phi']:
+            self.out.fillBranch('eleGen_' + i, [iobj[i] for iobj in genElectrons_select])
 
         return True
 

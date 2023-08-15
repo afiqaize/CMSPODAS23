@@ -1,7 +1,9 @@
+drop *
 keep ele*
 keep mass
 keep *weight*
 keep *Weight*
 keep nele
-keep HLT*
+keep HLT_Ele23_Ele12*
+keep HLT_Ele3*
 keep Flag*
