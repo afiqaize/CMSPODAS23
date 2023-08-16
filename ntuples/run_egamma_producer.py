@@ -34,8 +34,9 @@ else:
 
 Modules = [countHistogramsModule(),egamma_Module()] 
 
-#if not args.isdata:
-#   Modules.append({'2016':puWeight_UL2016 , '2017':puWeight_UL2017 , '2018':puWeight_UL2018}[args.year]())
+
+if not args.isdata:
+   Modules.append({'2016':puWeight_UL2016 , '2017':puWeight_UL2017 , '2018':puWeight_UL2018}[args.year]())
 
 p=PostProcessor(".",infilelist,
                 branchsel="egamma_keep_and_drop.txt",

@@ -8,3 +8,4 @@ keep Electron*
 keep Photon*
 keep HLT*
 keep Flag_*
+keep Pileup_nTrueInt

@@ -28,14 +28,12 @@ class egamma_Producer(Module):
         pass
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
 
-#        branches = ['pt','eta','phi','charge',
-#                    'cutBased','SigmaIEtaIEtaFull5x5','dEtaSeedAtVtx',
-#                    'dPhiAtVtx','HoverE','PFChIso','PFNeuIso',
-#                    'PFPhoIso','EoverP','MissHits','r9',
+#        branches = ['dEtaSeedAtVtx','dPhiAtVtx','PFChIso',
+#                    'PFNeuIso','PFPhoIso','EoverP',
 #                    'SCRawEn','SeedRawEn','SeedRawEn',
 #                    'SCEn','EcalEn','En','CalibEn',
-#		    'GsfTrkPInn','GsfTrkPOut',
-#                    'GenEn','GenPt','GenEta','GenPhi']
+#		     'GsfTrkPInn','GsfTrkPOut',
+#                    'GenEn'] # branches missing in the standard NanoAOD
 
 
        # Find list of activated branches in input tree

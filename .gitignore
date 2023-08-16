@@ -1,0 +1,60 @@
+# '**' can be used to match any number of directories.
+crab/
+*.root
+
+*.pdf
+*.tgz
+*.tar.gz
+.__afs*
+.nfs*
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+############
+# Directories #
+############
+*.out
+.nfs*
+
+######################
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+######################
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#########
+# PLOTS #
+#########
+*.png
+*.eps
+*.pdf
+
+##########
+# OTHERS #
+##########
+
+.* #Hidden files
+!/.gitignore #Keep this file
+
+*.pyc
+*.d
+*.pcm
+*.err
+*__init__*
+*.__
+
