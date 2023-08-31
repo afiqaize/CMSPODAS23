@@ -14,5 +14,4 @@ scram b
 
 cd -
 
-git clone [git@github.com:AnYpku/CMSPODAS23.git
-](https://github.com/AnYpku/CMSPODAS23.git)https://github.com/AnYpku/CMSPODAS23.git
+git clone https://github.com/AnYpku/CMSPODAS23.git
