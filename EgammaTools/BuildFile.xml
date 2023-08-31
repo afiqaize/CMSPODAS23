@@ -1,0 +1,9 @@
+<use   name="root"/>
+<use   name="rootcore"/> 
+<use name="rootinteractive"/>
+<use name="rootphysics"/>
+<use   name="vdt_headers"/>
+<use   name="roofit"/>
+<export>
+  <lib   name="1"/>
+</export>
