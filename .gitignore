@@ -2,6 +2,7 @@
 crab/
 *.root
 .ipynb_checkpoints/
+.ipynb_*
 
 *.pdf
 *.tgz
