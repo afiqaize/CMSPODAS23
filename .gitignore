@@ -1,7 +1,10 @@
 # '**' can be used to match any number of directories.
 crab/
 *.root
-.ipynb_checkpoints/
+egamma_id/.ipynb_checkpoints/
+MVA/.ipynb_checkpoints/
+Tnp/.ipynb_checkpoints/
+reco_and_energy_corr/.ipynb_checkpoints/
 .ipynb_*
 
 *.pdf
