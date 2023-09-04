@@ -1,6 +1,7 @@
 # '**' can be used to match any number of directories.
 crab/
 *.root
+.ipynb_checkpoints/
 
 *.pdf
 *.tgz
