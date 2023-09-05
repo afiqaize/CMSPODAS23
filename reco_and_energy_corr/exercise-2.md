@@ -29,6 +29,8 @@ What does this occupancy plot mean?<br>
 
 ## Exercise 2.2
 
+Open the notebook exercise-2.ipynb to see the regression effect from the simulation generating events by random seeds.
+
 ### Q2.1 Correct the ele_SCRawEn/ele_GenEn with the mean value got in the fit of Q1.2 and repeat the fit<br>
 ``histCorr = HistFuncs::makeHist(tree,100,0,2,"eleSCRawEn/eleGen_pt/0.961","ele_is_promt==1 && ele_pt>20")``<br>
 ``ResFitter fitter;``<br>
@@ -57,8 +59,6 @@ $$mass =\frac{mass_{corr}}{\sqrt{\frac{ele1CaliEn}{ele1En}\times\frac{ele2CaliEn
 The $mass_{corr}$ is the branch ``mass`` in our ntuple trees<br>
 ``hmass = HistFuncs::makeHist(tree,100,50,120,"mass/sqrt(ele_CaliEn[0]/ele_En[0]*ele_CaliEn[1]/ele_En[1])","ele_is_promt[0]==1 && ele_is_promt[1]==1 && nele>1")``<br>
 What do you observe? Why is it?
-
-
 
 ## Exercise 2.3
 
