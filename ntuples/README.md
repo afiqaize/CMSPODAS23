@@ -1,5 +1,5 @@
 # CMSPODAS23
-### environment set up
+### environment and package set up
 ``cmsrel CMSSW_10_6_29``<br>
 ``cd CMSSW_10_6_29/src``<br>
 ``cmsenv``<br>
