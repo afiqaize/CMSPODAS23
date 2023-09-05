@@ -34,7 +34,7 @@ Functions we may need and the usages are:<br>
 3. Fit functions containing ``makeDCBFit``, ``makeCBFit``, and ``makeCruijffFit`` could call via:<br>
 ``ResFitter fitter;``<br>``fit = fitter.makeDCBFit(hist,0.5,1.5);``<br>``fit.plot->Draw()`` (if necessary)<br>
 
-Exercises in ``reco_and_energy_corr/exercise-2.1.ipynb`` and ``reco_and_energy_corr/exercise-2.2.md`` (run exercise-2.2 in the root command line environment through terminal)<br>
+Exercises in ``reco_and_energy_corr/exercise-2.ipynb`` and ``reco_and_energy_corr/exercise-2.md`` (run exercise-2.md in the root command line environment through terminal)<br>
 
 ### Identification
 A brief introduction in slides and Jupyternotebook<br>
