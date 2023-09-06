@@ -1,5 +1,5 @@
 # CMSPODAS23
-This repo is for the EGamma long-exercise of the CMS Physics object & data analysis school [CMSPODAS2023](https://indico.desy.de/event/38207). The exercise focuses on:
+This repo is for the EGamma long exercise of the CMS Physics object & data analysis school [CMSPODAS2023](https://indico.desy.de/event/38207). The exercise focuses on:
 ### Produce ntuples
 Based on the [NANOAOD framework](https://github.com/cms-nanoAOD/nanoAOD-tools.git). CMSSW environment and packages should be set up firstly as follows:<br>
 
@@ -15,7 +15,7 @@ Ntuple tree contains electron branches could be produced by running:<br>
 ``python run_egamma_producer.py -f filename -y year``<br>
 
 In order to realize the energy change step by step, the energy branches in the intermediate state are also saved.
-### Energy calibration
+### Energy calibration from ECAL
 A brief introduction and exercise in ``reco_and_energy_corr/exercise-1.ipynb``<br>
 
 ### Reconstruction
