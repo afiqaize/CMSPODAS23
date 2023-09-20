@@ -7,15 +7,15 @@ Load library<br>
 ``gSystem->Load("libCMSPODAS23EgammaTools.so")``<br>
 
 Define tree<br>
-we have files saved in ``/eos/user/y/yian/Ntuples_CMSPODAS``<br>
-``treeMC = HistFuncs::makeChain("Events","/eos/user/y/yian/Ntuples_CMSPODAS/0000/*.root",10)``;<br>
+we have files saved in ``/eos/user/y/yian/Ntuples_CMSPODAS/0000/`` and skimming files in ``/eos/user/y/yian/Ntuples_CMSPODAS/GGNtupSkimmed/``with all fakes removal<br>
+``tree = HistFuncs::makeChain("ggNtuplizer/EventTree","/eos/user/y/yian/Ntuples_CMSPODAS/0000/*.root",10)``;<br>
 
 Draw histograms<br>
-``hist1 = HistFuncs::makeHist(treeMC,100,0,1,"eleSCRawEn","eleGenEn>10")``<br>
+``hist1 = HistFuncs::makeHist(tree,100,10,200,"eleSCRawEn","eleGenEn>10")``<br>
 ``hist2 = ...``<br>
 
 ### Q1.2: Use the variable ``eleSCRawEn`` to see the resolution distribution (divided by eleGenEn) in different η regions and fit it with different functions (functions ``makeDCBFit`` and ``makeCruijffFit``)<br>
-``hist = HistFuncs::makeHist(treeMC,100,0,1,"eleSCRawEn/eleGenEn","eleGenEn>0 && eleGenEn>30 && eleGenEn<40 && abs(eleSCEta)<1.4442")``<br>
+``hist = HistFuncs::makeHist(tree,100,0,2,"eleSCRawEn/eleGenEn","eleGenEn>0 && eleGenEn>30 && eleGenEn<40 && abs(eleSCEta)<1.4442")``<br>
 ``ResFitter fitter;``<br>
 ``fitResDCB = fitter.makeDCBFit(hist,0.5,1.5)``<br>
 ``fitResDCB.plot->Draw()``<br>
@@ -40,11 +40,11 @@ Open the notebook exercise-2.ipynb to see the regression effect from the simulat
 ``....``<br>
 
 ### Q2.2 Draw distributions of ``eleSCRawEn``, ``eleSCEn``, ``eleEcalEn``, and ``ele_En``<br>
-``hist = HistFuncs::compVars(events,100,20,200,{"eleSCRawEn","eleSCEn"},"eleGenEn>20")``<br>
+``hist = HistFuncs::compVars(tree,100,20,200,{"eleSCRawEn","eleSCEn"},"eleGenEn>20")``<br>
 ``....``<br>
 Give explanations<br>
 
-### Q2.3 When eleGen_pt ranges from ``(10, 20)``, ``(20, 30)``, ``(30, 40)``, and ``(40, 50)``, fit the resolution distributions of ``eleSCEn/eleGenEn``, ``eleGsfTrkPInn/eleGenEn``, and ``eleEn/eleGenEn``<br>
+### Q2.3 When eleGenEn ranges from ``(10, 20)``, ``(20, 30)``, ``(30, 40)``, and ``(40, 50)``, fit the resolution distributions of ``eleSCEn/eleGenEn``, ``eleGsfTrkPInn/eleGenEn``, and ``eleEn/eleGenEn``<br>
 ``histCorr1 = HistFuncs::makeHist(tree,100,0,2,"eleSCEn/eleGenEn","eleGenEn>10 && eleGenEn<20 && abs(eleSCEta)<1.4442")``<br>
 ``ResFitter fitter;``<br>
 ``fitResDCB = fitter.makeDCBFit(histCorr1,0.5,1.5)``<br>
