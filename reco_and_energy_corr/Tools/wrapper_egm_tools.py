@@ -1,6 +1,7 @@
+import os
 import cppyy
 
-egm_tools_base = '../../EgammaTools'
+egm_tools_base = f'{os.path.dirname(os.path.abspath(__file__))}/../../EgammaTools'
 cppyy.add_include_path(f'{egm_tools_base}/interface/')
 
 for src in ['CruijffPdf.cc', 'EGUtilFuncs.cc', 'GBRMath.cc', 'HistFuncs.cc', 'MassNtupConverter.cc', 'ResFitter.cc', 'RooDoubleCBFast.cc']:
