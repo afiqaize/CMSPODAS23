@@ -1,6 +1,5 @@
 import os
 import cppyy
-import numpy as np
 
 egm_tools_base = f'{os.path.dirname(os.path.abspath(__file__))}/../../EgammaTools'
 cppyy.add_include_path(f'{egm_tools_base}/interface/')
@@ -16,12 +15,10 @@ def makeChain(cname, flist, njob = 1, ijob = 1, verbose = 2):
     return cppyy.gbl.HistFuncs.makeChain(cname, flist, njob, ijob, verbose)
 
 def makeHist(tree, nbin, xmin, xmax, variable, cut):
-    result = cppyy.gbl.HistFuncs.makeHist(tree, nbin, xmin, xmax, variable, cut)
-    return [result, np.linspace(xmin, xmax, int(nbin + 1))]
+    return cppyy.gbl.HistFuncs.makeHist(tree, nbin, xmin, xmax, variable, cut)
 
 def compVars(tree, nbin, xmin, xmax, variables, cut):
-    result = cppyy.gbl.HistFuncs.compVars(tree, nbin, xmin, xmax, vector[str](variables), cut)
-    return [result, np.linspace(xmin, xmax, int(nbin + 1))]
+    return cppyy.gbl.HistFuncs.compVars(tree, nbin, xmin, xmax, vector[str](variables), cut)
 
 def compareDataMC(h_data, h_mc, normalize):
     return cppyy.gbl.HistFuncs.compareDataMC(h_data, h_mc, normalize)
