@@ -8,7 +8,16 @@ for src in ['CruijffPdf.cc', 'EGUtilFuncs.cc', 'GBRMath.cc', 'HistFuncs.cc', 'Ma
         cppyy.cppdef(sfile.read())
 
 from cppyy.gbl import ResFitter
-makeChain = cppyy.gbl.HistFuncs.makeChain 
-makeHist = cppyy.gbl.HistFuncs.makeHist 
-compVars = cppyy.gbl.HistFuncs.compVars
-compareDataMC = cppyy.gbl.HistFuncs.compareDataMC
+from cppyy.gbl.std import vector
+
+def makeChain(cname, flist, njob = 1, ijob = 1, verbose = 2):
+    return cppyy.gbl.HistFuncs.makeChain(cname, flist, njob, ijob, verbose)
+
+def makeHist(tree, nbin, xmin, xmax, varname, cuts):
+    return cppyy.gbl.HistFuncs.makeHist(tree, nbin, xmin, xmax, varname, cuts)
+
+def compVars(tree, nbin, xmin, xmax, variables, cut):
+    return cppyy.gbl.HistFuncs.compVars(tree, nbin, xmin, xmax, vector[str](variables), cut)
+
+def compareDataMC(h_data, h_mc, normalize):
+    return cppyy.gbl.HistFuncs.compareDataMC(h_data, h_mc, normalize)
