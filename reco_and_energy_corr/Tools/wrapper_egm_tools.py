@@ -14,8 +14,8 @@ from cppyy.gbl.std import vector
 def makeChain(cname, flist, njob = 1, ijob = 1, verbose = 2):
     return cppyy.gbl.HistFuncs.makeChain(cname, flist, njob, ijob, verbose)
 
-def makeHist(tree, nbin, xmin, xmax, variable, cuts):
-    return cppyy.gbl.HistFuncs.makeHist(tree, nbin, xmin, xmax, variable, cuts)
+def makeHist(tree, nbin, xmin, xmax, variable, cut):
+    return cppyy.gbl.HistFuncs.makeHist(tree, nbin, xmin, xmax, variable, cut)
 
 def compVars(tree, nbin, xmin, xmax, variables, cut):
     return cppyy.gbl.HistFuncs.compVars(tree, nbin, xmin, xmax, vector[str](variables), cut)
