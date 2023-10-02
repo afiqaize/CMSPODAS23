@@ -1,13 +1,13 @@
 #include <iostream>
 #include <math.h>
 #include "TMath.h"
-#include "CMSPODAS23/EgammaTools/interface/RooDoubleCBFast.h"
+#include "RooDoubleCBFast.h"
 //#include "../interface/RooDoubleCBFast.h"
 //#include "../interface/RooFermi.h"
 //#include "../interface/RooRelBW.h"
 #include "RooRealVar.h"
 #include "RooRealConstant.h"
-#include "CMSPODAS23/EgammaTools/interface/GBRMath.h"
+#include "GBRMath.h"
 
 using namespace RooFit;
 

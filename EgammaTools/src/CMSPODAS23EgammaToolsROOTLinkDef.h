@@ -1,7 +1,7 @@
-#include "CMSPODAS23/EgammaTools/interface/HistFuncs.h"
-#include "CMSPODAS23/EgammaTools/interface/ResFitter.h"
-#include "CMSPODAS23/EgammaTools/interface/RooDoubleCBFast.h"
-#include "CMSPODAS23/EgammaTools/interface/CruijffPdf.h"
+#include "HistFuncs.h"
+#include "ResFitter.h"
+#include "RooDoubleCBFast.h"
+#include "CruijffPdf.h"
 #ifdef __CINT__
 #pragma link off all globals;
 #pragma link off all classes;

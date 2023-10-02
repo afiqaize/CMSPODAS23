@@ -1,4 +1,7 @@
 
+#ifndef EGUTILFUNCS_H
+#define EGUTILFUNCS_H
+
 #include <string>
 #include <vector>
 
@@ -23,3 +26,5 @@ public:
   static void addJobNrToFilename(char* filename,int jobNr);
   static void addJobNrToFilename(std::string& filename,int jobNr);
 };
+
+#endif

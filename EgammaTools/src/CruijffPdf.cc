@@ -1,4 +1,4 @@
-#include "CMSPODAS23/EgammaTools/interface/CruijffPdf.h"
+#include "CruijffPdf.h"
 
 #include "RooRealVar.h"
 #include "RooRealConstant.h"

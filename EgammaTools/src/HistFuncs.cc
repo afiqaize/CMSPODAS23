@@ -1,6 +1,6 @@
-#include "CMSPODAS23/EgammaTools/interface/HistFuncs.h"
+#include "HistFuncs.h"
 
-#include "CMSPODAS23/EgammaTools/interface/EGUtilFuncs.h"
+#include "EGUtilFuncs.h"
 
 #include "TH1D.h"
 #include "TLegend.h"

@@ -1,4 +1,4 @@
-#include "CMSPODAS23/EgammaTools/interface/EGUtilFuncs.h"
+#include "EGUtilFuncs.h"
 
 #include <iostream>
 #include <fstream>
