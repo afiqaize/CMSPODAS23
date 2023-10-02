@@ -1,5 +1,6 @@
 import os
 import cppyy
+import numpy as np
 
 egm_tools_base = f'{os.path.dirname(os.path.abspath(__file__))}/../../EgammaTools'
 cppyy.add_include_path(f'{egm_tools_base}/interface/')
