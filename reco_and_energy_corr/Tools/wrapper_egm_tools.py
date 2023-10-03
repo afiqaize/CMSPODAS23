@@ -37,7 +37,7 @@ class NotebookHistogram(object):
     def make_uproot(self, fn):
         def fn_using_uproot(self, *args, **kwargs):
             if self.uproot is None:
-                self.uproot = uproot.pyrootfrom_pyroot(self..histogram)
+                self.uproot = uproot.pyroot.from_pyroot(self.histogram)
             return fn(self, *args, **kwargs)
         return fn_using_uproot
 
