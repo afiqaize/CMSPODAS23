@@ -20,10 +20,11 @@ class NotebookHistogram(object):
         self.histogram = histogram
 
     def Draw(self, option = None):
-        if canvas is None:
-            canvas = TCanvas()
+        if self.__class__.canvas is None:
+            self.__class__.canvas = TCanvas()
+        self.__class__.canvas.cd()
         self.histogram.Draw()
-        canvas.Draw()
+        self.__class__.canvas.Draw()
 
     @classmethod
     def reset(cls, x):
