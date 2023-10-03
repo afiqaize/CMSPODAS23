@@ -1,5 +1,6 @@
 import os
 import cppyy
+import uproot
 
 egm_tools_base = f'{os.path.dirname(os.path.abspath(__file__))}/../../EgammaTools'
 cppyy.add_include_path(f'{egm_tools_base}/interface/')
@@ -18,13 +19,39 @@ class NotebookHistogram(object):
 
     def __init__(self, histogram):
         self.histogram = histogram
+        self.uproot = None
 
-    def Draw(self, option = None):
-        if self.__class__.canvas is None:
-            self.__class__.canvas = TCanvas()
+    def make_canvas(self, fn):
+        def fn_using_canvas(self, *args, **kwargs):
+            if self.__class__.canvas is None:
+                self.__class__.canvas = TCanvas()
+            return fn(self, *args, **kwargs)
+        return fn_using_canvas
+
+    @make_canvas
+    def draw(self, option = None):
         self.__class__.canvas.cd()
         self.histogram.Draw()
         self.__class__.canvas.Draw()
+
+    def make_uproot(self, fn):
+        def fn_using_uproot(self, *args, **kwargs):
+            if self.uproot is None:
+                self.uproot = uproot.pyrootfrom_pyroot(self..histogram)
+            return fn(self, *args, **kwargs)
+        return fn_using_uproot
+
+    @make_uproot
+    def axis(self, *args, **kwargs):
+        return self.uproot.axis(*args, **kwargs)
+
+    @make_uproot
+    def counts(self, *args, **kwargs):
+        return self.uproot.counts(*args, **kwargs)
+
+    @make_uproot
+    def errors(self, *args, **kwargs):
+        return self.uproot.errors(*args, **kwargs)
 
     @classmethod
     def reset(cls, x):
