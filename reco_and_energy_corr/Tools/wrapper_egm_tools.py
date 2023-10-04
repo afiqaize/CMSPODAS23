@@ -45,12 +45,15 @@ class NotebookHistogram(object):
     @make_canvas
     def draw(self, option = None):
         self.__class__.canvas.cd()
-        self.histogram.Draw()
+        if option is None:
+            self.histogram.Draw()
+        else:
+            self.histogram.Draw(option)
         self.__class__.canvas.Draw()
 
     @make_fitter
     @make_canvas
-    def fit(self, function = 'DCB'):
+    def fit(self, function = 'DCB', option = None):
         if function != 'DCB' and function != 'Cruijff':
             print('unknown function. supported ones are DCB and Cruijff.', flush = True)
             return None
@@ -58,7 +61,10 @@ class NotebookHistogram(object):
         xmax = self.histogram.GetXaxis().GetBinUpEdge(self.histogram.GetNbinsX())
         result = self.__class__.fitter.makeDCBFit(self.histogram, xmin, xmax) if function == 'DCB' else self.__class__.fitter.makeCruijffFit(self.histogram, xmin, xmax)
         self.__class__.canvas.cd()
-        result.plot.Draw()
+        if option is None:
+            result.plot.Draw()
+        else:
+            result.plot.Draw(option)
         self.__class__.canvas.Draw()
 
     @make_uproot
@@ -91,3 +97,6 @@ def compVars(tree, nbin, xmin, xmax, variables, cut):
 
 def compareDataMC(h_data, h_mc, normalize):
     return NotebookHistogram(cppyy.gbl.HistFuncs.compareDataMC(h_data.histogram, h_mc.histogram, normalize))
+
+def makeColorMap(tree, nbinx, xmin, xmax, variablex, nbiny, ymin, ymax, variabley, cut):
+    return NotebookHistogram(cppyy.gbl.HistFuncs.makeColorMap(tree, nbinx, xmin, xmax, variablex, nbiny, ymin, ymax, variabley, cut))

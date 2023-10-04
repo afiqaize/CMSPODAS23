@@ -24,6 +24,7 @@ public:
   static TH1* makeEffHist(TTree* tree,int nrBins,float xMin,float xMax,const std::string& var,const std::string& sampleCuts,const std::string& cuts);
   
   static TH1* makeHist(TTree* tree,int nrBins,float xmin,float xmax,const std::string& var,const std::string& cuts);
+  static TH2* makeColorMap(TTree* tree, int nrBinsX, float xmin, float xmax, const std::string& varx, int nrBinsY, float ymin, float ymax, const std::string& vary, const std::string& cuts);
   static TH1* compSigBkg(TTree* sigTree, TTree* bkgTree,int nrBins,float xmin,float xmax,const std::string& var,const std::string& commonCuts,const std::string& sigCuts,const std::string& bkgCuts,bool norm);
   static TH1* compVars(TTree* tree,int nrBins,float xmin,float xmax,const std::vector<std::string>& vars,const std::string& cuts);
 

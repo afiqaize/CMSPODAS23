@@ -31,9 +31,19 @@ TH1* HistFuncs::makeEffHist(TTree* tree,int nrBins,float xMin,float xMax,const s
 
 TH1* HistFuncs::makeHist(TTree* tree,int nrBins,float xmin,float xmax,const std::string& var,const std::string& cuts)
 {
-  TH1* hist = new TH1D("var1Hist","temp",nrBins,xmin,xmax);
+  TH1* hist = new TH1D("var1Hist","temp2", nrBins,xmin,xmax);
   hist->Sumw2();
   tree->Draw((var+">>var1Hist").c_str(),cuts.c_str(),"goff");
+  hist->SetDirectory(0);
+  hist->SetTitle("");
+  return hist;
+}
+
+TH2* HistFuncs::makeColorMap(TTree* tree, int nrBinsX, float xmin, float xmax, const std::string& varx, int nrBinsY, float ymin, float ymax, const std::string& vary, const std::string& cuts)
+{
+  TH2* hist = new TH2D("var2Hist", "temp2", nrBinsX, xmin, xmax, nrBinsY, ymin, ymax);
+  hist->Sumw2();
+  tree->Draw((varx + ":" + vary + ">> var2Hist").c_str(), cuts.c_str(), "goff");
   hist->SetDirectory(0);
   hist->SetTitle("");
   return hist;
