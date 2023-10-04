@@ -20,6 +20,13 @@ def make_canvas(fn):
         return fn(self, *args, **kwargs)
     return fn_using_canvas
 
+def make_fitter(fn):
+    def fn_using_fitter(self, *args, **kwargs):
+        if self.__class__.fitter is None:
+            self.__class__.fitter = ResFitter()
+        return fn(self, *args, **kwargs)
+    return fn_using_fitter
+
 def make_uproot(fn):
     def fn_using_uproot(self, *args, **kwargs):
         if self.uproot is None:
@@ -39,6 +46,19 @@ class NotebookHistogram(object):
     def draw(self, option = None):
         self.__class__.canvas.cd()
         self.histogram.Draw()
+        self.__class__.canvas.Draw()
+
+    @make_fitter
+    @make_canvas
+    def fitDCB(self, function = 'DCB'):
+        if function != 'DCB' and function != 'Cruijff':
+            print('unknown function. supported ones are DCB and Cruijff.', flush = True)
+            return None
+        xmin = self.histogram.GetXaxis().GetBinLowEdge(1)
+        xmax = self.histogram.GetXaxis().GetBinUpEdge(self.histogram.GetNbinsX())
+        result = self.__class__.fitter.makeDCBFit(self.histogram, xmin, xmax) if function == 'DCB' else self.__class__.fitter.makeCruijffFit(self.histogram, xmin, xmax)
+        self.__class__.canvas.cd()
+        result.plot.Draw()
         self.__class__.canvas.Draw()
 
     @make_uproot
