@@ -50,7 +50,7 @@ class NotebookHistogram(object):
 
     @make_fitter
     @make_canvas
-    def fitDCB(self, function = 'DCB'):
+    def fit(self, function = 'DCB'):
         if function != 'DCB' and function != 'Cruijff':
             print('unknown function. supported ones are DCB and Cruijff.', flush = True)
             return None
