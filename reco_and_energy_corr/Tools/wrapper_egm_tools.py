@@ -42,6 +42,9 @@ class NotebookHistogram(object):
         self.histogram = histogram
         self.uproot = None
 
+    def normalize_to(self, other):
+        self.histogram.Scale(other.histogram.Integral() / self.histogram.Integral())
+
     @make_canvas
     def draw(self, option = None):
         self.__class__.canvas.cd()
